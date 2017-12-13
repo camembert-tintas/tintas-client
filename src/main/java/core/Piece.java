@@ -8,11 +8,10 @@ public class Piece {
 	
 	public Piece(){
 		color = randomColor();
-		System.out.println(color);
 	}
 	
 	private int randomColor(){
-		color = (int)( Math.random()*( Color.values().length ));
+		color = (int)( Math.random()*( Color.values().length-1 )+1);
 		return color;
 	}
 	
