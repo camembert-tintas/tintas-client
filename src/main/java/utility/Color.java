@@ -2,17 +2,21 @@ package utility;
 
 
 public enum Color {
+	WHITE(1),
+	BLUE(2),
+	YELLOW(3),
+	ORANGE(4),
+	PURPLE(5),
+	GREEN(6),
+	RED(7);
 	
-	BLUE, GREEN, RED, YELLOW, PURPLE;
-
-
-	private String name = "";
+	private final int val;
 	
-	private Color(int name){
-	  this.name = Color[name];
+	Color(int color){
+		this.val = color;
 	}
 	
-	public String toString(){
-	  return name;
+	public int getColor() {
+		return val;
 	}
 }

@@ -30,7 +30,7 @@ public class PieceTest {
 	@Test
 	public void testConstruct() {
 		Piece p = new Piece();
-		assertTrue(p.getColor() != null);
+		assertTrue(p.getColor() != 0);
 	}
 
 }

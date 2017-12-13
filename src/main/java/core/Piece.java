@@ -4,20 +4,19 @@ import utility.Color;
 
 public class Piece {
 
-	private String color;
+	private int color;
 	
 	public Piece(){
-		color = Color.Blue.toString();
+		color = randomColor();
 		System.out.println(color);
-		//color = Color.randomColor()
 	}
 	
 	private int randomColor(){
-		color = (int)( Math.random()*( Color.values().length + 1 ));
+		color = (int)( Math.random()*( Color.values().length ));
 		return color;
 	}
 	
-	public String getColor(){
+	public int getColor(){
 		return color;
 	}
 };
