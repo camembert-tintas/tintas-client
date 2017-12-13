@@ -29,9 +29,9 @@ public class PawnTest {
 	@Test
 	public void test() {
 		Pawn p = new Pawn(new Coordinate('A',1));
-		assertTrue(p.toString().Equals("A1"));
+		assertTrue(p.toString().equals("A1"));
 		p.setCoordinate(new Coordinate('B',5));
-		assertTrue(p.toString().Equals("B5"));
+		assertTrue(p.toString().equals("B5"));
 	}
 
 }
