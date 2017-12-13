@@ -6,7 +6,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-
+import utility.State;
+import core.Coordinate;
 import core.Intersection;
 
 public class IntersectionTest {
@@ -29,10 +30,11 @@ public class IntersectionTest {
 
 	@Test
 	public void test() {
-		Intersection inter = new Intersection();
-//		assertEquals(inter.getState());
-//		assertEquals(inter.getColor(), null);
-//		assertEquals(inter.getCoord(), null);
+		Coordinate c = new Coordinate('A', 1);
+		Intersection inter = new Intersection(c);
+		assertEquals(inter.getState(), State.LIBRE.getState());
+		assertEquals(inter.getCoord().toString(), c.toString());
+		assertEquals(inter.getPiece(), null);
 	}
 
 }

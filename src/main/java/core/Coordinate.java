@@ -16,6 +16,11 @@ public class Coordinate {
 		this.line = line;
 		this.column = column;
 	}
+	
+	public Coordinate(Coordinate c){
+		this.line = c.getLine();
+		this.column = c.getColumn();
+	}
 
 	@Override
 	public String toString() {
