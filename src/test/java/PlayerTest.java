@@ -31,12 +31,12 @@ public class PlayerTest {
 		Player p = new Player("Marcus");
 		assertTrue(p.getNum() == 1);
 		assertTrue(p.getName().equals("Marcus"));
-		assertTrue(p.getPieces().length == 0);
+		assertTrue(p.getPieces().size() == 0);
 		
 		Player q = new Player("Michou");
-		assertTrue(p.getNum() == 2);
-		assertTrue(p.getName().equals("Michou"));
-		assertTrue(p.getPieces().length == 0);
+		assertTrue(q.getNum() == 2);
+		assertTrue(q.getName().equals("Michou"));
+		assertTrue(q.getPieces().size() == 0);
 	}
 
 }

@@ -1,7 +1,5 @@
 package core;
 
-import java.util.AbstractCollection;
-import java.util.AbstractList;
 import java.util.ArrayList;
 
 public class Player {
@@ -11,14 +9,15 @@ public class Player {
 	
 	public Player(String name){
 		this.name = name;
+		pieces = new ArrayList<Piece>(); 
 		num++;
 	}
 
-	public Piece[] getPieces() {
+	public ArrayList<Piece> getPieces() {
 		return pieces;
 	}
 
-	public void setPieces(Piece[] pieces) {
+	public void setPieces(ArrayList<Piece> pieces) {
 		this.pieces = pieces;
 	}
 	
@@ -26,14 +25,12 @@ public class Player {
 		pieces.add(piece);
 	}
 
-	public static int getNum() {
+	public int getNum() {
 		return num;
 	}
 
 	public String getName() {
 		return name;
 	}
-	
-	
 
 }

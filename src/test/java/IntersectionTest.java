@@ -7,7 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-import core.Intersection;
+//import core.Intersection;
 
 public class IntersectionTest {
 
@@ -29,7 +29,7 @@ public class IntersectionTest {
 
 	@Test
 	public void test() {
-		Intersection inter = new Intersection();
+//		Intersection inter = new Intersection();
 //		assertEquals(inter.getState());
 //		assertEquals(inter.getColor(), null);
 //		assertEquals(inter.getCoord(), null);
