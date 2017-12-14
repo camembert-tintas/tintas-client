@@ -35,4 +35,16 @@ public class Intersection {
 		this.state = State.LIBRE.getState();
 		this.coord = new Coordinate(c);
 	}
+	
+	//METHODS
+	public void addPiece(Piece p){
+		this.piece = new Piece(p);
+		this.state = State.PIECE.getState();
+	}
+	
+	public void removePiece() {
+		if (this.state == State.PIECE.getState()) {
+			this.piece = null;
+		}
+	}
 }

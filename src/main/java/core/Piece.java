@@ -10,6 +10,10 @@ public class Piece {
 		color = randomColor();
 	}
 	
+	public Piece(Piece p){
+		this.color = p.getColor();
+	}
+	
 	private int randomColor(){
 		color = (int)( Math.random()*( Color.values().length-1 )+1);
 		return color;

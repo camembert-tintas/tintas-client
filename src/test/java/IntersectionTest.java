@@ -7,8 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import utility.State;
-import core.Coordinate;
-import core.Intersection;
+import core.*;
 
 public class IntersectionTest {
 
@@ -34,6 +33,14 @@ public class IntersectionTest {
 		Intersection inter = new Intersection(c);
 		assertEquals(inter.getState(), State.LIBRE.getState());
 		assertEquals(inter.getCoord().toString(), c.toString());
+		assertEquals(inter.getPiece(), null);
+
+		Piece p = new Piece();
+		inter.addPiece(p);
+		assertEquals(inter.getState(), State.PIECE.getState());
+		assertEquals(inter.getPiece().getColor(), p.getColor());
+		
+		inter.removePiece();
 		assertEquals(inter.getPiece(), null);
 	}
 
