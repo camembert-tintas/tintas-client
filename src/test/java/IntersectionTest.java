@@ -39,6 +39,9 @@ public class IntersectionTest {
 		inter.addPiece(p);
 		assertEquals(inter.getState(), State.PIECE.getState());
 		assertEquals(inter.getPiece().getColor(), p.getColor());
+		
+		inter.removePiece();
+		assertEquals(inter.getPiece(), null);
 	}
 
 }
