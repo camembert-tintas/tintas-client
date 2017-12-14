@@ -29,10 +29,10 @@ public class CoordinateTest {
 	@Test
 	public void testConstructor() {
 		Coordinate c = new Coordinate('A',1);
-		assertTrue(c.getColumn() == 1);
-		assertTrue(c.getLine() == 'A');
+		assertTrue(c.getColumn() == 'A');
+		assertTrue(c.getLine() == 1);
 		assertTrue(c.toString().equals("A1"));
-		
+		assertTrue(c.isValid() == false);
 	}
 
 }
