@@ -49,16 +49,8 @@ public class Engine {
 			tabPiecesColor.add(pPurple);
 			tabPiecesColor.add(pGreen);
 			tabPiecesColor.add(pRed);
-		}
-		for(Piece p: tabPiecesColor){
-			System.out.print(p.getColor());
-		}
-		System.out.println();
+		}		
 		Collections.shuffle(tabPiecesColor);
-		for(Piece p: tabPiecesColor){
-			System.out.print(p.getColor());
-		}
-		System.out.println();
 		for(int i=0; i<this.plateau.size(); i++){
 			this.plateau.get(i).addPiece(tabPiecesColor.get(i));
 		}
@@ -247,4 +239,18 @@ public class Engine {
 		return true;
     }
 
+	public void printTableau(){
+		String letter = "ABCDEFGHI";
+	    for (int i = 0; i < letter.length(); i++) {
+	        for (int j = 1; j <= 9; j++) {
+	            Coordinate coordinates = new Coordinate(letter.charAt(i), j);
+	            if (coordinates.isValid()) {
+	                getIntersection(coordinates.toString()).printIntersect();
+	            }else{
+	            	System.out.print(" ");
+	            }
+	        }
+	        System.out.print("\n");
+	    }
+	}
 }

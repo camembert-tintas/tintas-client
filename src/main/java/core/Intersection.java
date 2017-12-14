@@ -44,4 +44,12 @@ public class Intersection {
 			this.state = State.LIBRE.getState();
 		}
 	}
+	
+	public String printIntersect(){
+		if(this.state == State.LIBRE.getState()){
+			return " ";
+		}else{
+			return String.valueOf(this.piece.getColor());
+		}
+	}
 }
