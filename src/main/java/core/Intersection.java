@@ -19,10 +19,6 @@ public class Intersection {
 		return piece;
 	}
 
-	public void setPiece(Piece piece) {
-		this.piece = piece;
-	}
-
 	public Coordinate getCoord() {
 		return coord;
 	}
@@ -45,6 +41,7 @@ public class Intersection {
 	public void removePiece() {
 		if (this.state == State.PIECE.getState()) {
 			this.piece = null;
+			this.state = State.LIBRE.getState();
 		}
 	}
 }

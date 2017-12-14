@@ -2,8 +2,7 @@ package utility;
 
 public enum State {
 	LIBRE(0),
-	PIECE(1),
-	PION(2);
+	PIECE(1);
 	
 	private final int val;
 	
