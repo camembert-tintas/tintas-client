@@ -12,6 +12,12 @@ public class Player {
 		pieces = new ArrayList<Piece>(); 
 		num++;
 	}
+	
+	public Player(Player player){
+		this.num = player.getNum();
+		this.name = player.getName();
+		this.pieces = player.getPieces();
+	}
 
 	public ArrayList<Piece> getPieces() {
 		return pieces;

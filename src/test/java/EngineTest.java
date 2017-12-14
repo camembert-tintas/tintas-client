@@ -55,5 +55,12 @@ public class EngineTest {
 		e.changePlayer();
 		assertTrue(e.actualPlayer() == 2);
 	}
+	
+	@Test
+	public void testPawn() {
+		Engine e = new Engine();
+		e.setPawn(new Coordinate('A',1));
+		assertTrue(e.getPawn().getCoordinate().toString().equals("A1"));
+	}
 
 }
