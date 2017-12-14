@@ -2,8 +2,6 @@ package core;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Vector;
-
 import utility.Color;
 
 public class Engine {
