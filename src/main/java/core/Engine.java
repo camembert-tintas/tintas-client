@@ -30,6 +30,7 @@ public class Engine {
 	        }
 	    }
 	    id++;
+	    fillEngine();
 	}
 	
 	public void fillEngine(){
@@ -50,15 +51,8 @@ public class Engine {
 			tabPiecesColor.add(pGreen);
 			tabPiecesColor.add(pRed);
 		}
-		for(Piece p: tabPiecesColor){
-			System.out.print(p.getColor());
-		}
-		System.out.println();
 		Collections.shuffle(tabPiecesColor);
-		for(Piece p: tabPiecesColor){
-			System.out.print(p.getColor());
-		}
-		System.out.println();
+		
 		for(int i=0; i<this.plateau.size(); i++){
 			this.plateau.get(i).addPiece(tabPiecesColor.get(i));
 		}
@@ -136,7 +130,7 @@ public class Engine {
 	
 	public void doMove(Coordinate coord){
 		Intersection intersect = getIntersection(coord.toString());
-		Piece piece = intersect.getPiece();
+		Piece piece = new Piece(intersect.getPiece());
 		intersect.removePiece();
 		players.get(actualPlayer).addPiece(piece);		
 	}
@@ -159,8 +153,9 @@ public class Engine {
 	}
 	
 	public ArrayList<Coordinate> possibleMovePawn(){
-		ArrayList<Coordinate> possible = new ArrayList<Coordinate>();		
-		Coordinate coordPawn = pawn.getCoordinate();
+		ArrayList<Coordinate> possible = new ArrayList<Coordinate>();	
+		System.out.println(pawn.getCoordinate().toString());
+		Coordinate coordPawn = new Coordinate(pawn.getCoordinate());
 		
 		for(int i = 0; i < plateau.size(); i++){
 			Coordinate actualCoord = plateau.get(i).getCoord();
