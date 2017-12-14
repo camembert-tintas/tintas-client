@@ -6,6 +6,7 @@ public class Engine {
 
 	private static int id = 0;
 	private ArrayList<Intersection> plateau;
+	private ArrayList<Player> players;
 	
 	public Engine(){
 		String letter = "ABCDEFGHI";
