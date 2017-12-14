@@ -11,9 +11,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
@@ -91,7 +88,7 @@ public class ConnexionPanel extends JPanel {
     private final void initFormPane() {
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new FlowLayout());
-        formPanel.setPreferredSize(new Dimension(WIDTH_PANEL, 150));
+        formPanel.setPreferredSize(new Dimension(WIDTH_PANEL, 665));
         formPanel.setBackground(new Color(51, 122, 183));
 
         JLabel loginLabel = new JLabel("LOGIN");
