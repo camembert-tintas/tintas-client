@@ -29,12 +29,10 @@ public class PlayerTest {
 	@Test
 	public void testConstructor() {
 		Player p = new Player("Marcus");
-		assertTrue(p.getNum() == 1);
 		assertTrue(p.getName().equals("Marcus"));
 		assertTrue(p.getPieces().size() == 0);
 		
 		Player q = new Player("Michou");
-		assertTrue(q.getNum() == 2);
 		assertTrue(q.getName().equals("Michou"));
 		assertTrue(q.getPieces().size() == 0);
 	}
