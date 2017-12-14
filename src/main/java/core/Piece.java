@@ -10,6 +10,10 @@ public class Piece {
 		color = randomColor();
 	}
 	
+	public Piece(int c){
+		this.color = c;
+	}
+	
 	public Piece(Piece p){
 		this.color = p.getColor();
 	}

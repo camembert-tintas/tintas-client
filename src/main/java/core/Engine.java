@@ -1,7 +1,10 @@
 package core;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Vector;
+
+import utility.Color;
 
 public class Engine {
 
@@ -9,6 +12,10 @@ public class Engine {
 	private ArrayList<Intersection> plateau;
 	private ArrayList<Player> players;
 	private int actualPlayer = 1;
+	
+	public ArrayList<Intersection> getPlateau() {
+		return this.plateau;
+	}
 	
 	public Engine(){
 		plateau = new ArrayList<Intersection>();
@@ -26,9 +33,34 @@ public class Engine {
 	}
 	
 	public void fillEngine(){
-		Vector<Integer> tabPiecesColor = new Vector<Integer>();
+		ArrayList<Piece> tabPiecesColor = new ArrayList<Piece>();
+		Piece pWhite = new Piece(Color.WHITE.getColor());
+		Piece pBlue = new Piece(Color.BLUE.getColor());
+		Piece pYellow = new Piece(Color.YELLOW.getColor());
+		Piece pOrange = new Piece(Color.ORANGE.getColor());
+		Piece pPurple = new Piece(Color.PURPLE.getColor());
+		Piece pGreen = new Piece(Color.GREEN.getColor());
+		Piece pRed = new Piece(Color.RED.getColor());
 		for (int a=0; a<7; a++){
-			
+			tabPiecesColor.add(pWhite);
+			tabPiecesColor.add(pBlue);
+			tabPiecesColor.add(pYellow);
+			tabPiecesColor.add(pOrange);
+			tabPiecesColor.add(pPurple);
+			tabPiecesColor.add(pGreen);
+			tabPiecesColor.add(pRed);
+		}
+		for(Piece p: tabPiecesColor){
+			System.out.print(p.getColor());
+		}
+		System.out.println();
+		Collections.shuffle(tabPiecesColor);
+		for(Piece p: tabPiecesColor){
+			System.out.print(p.getColor());
+		}
+		System.out.println();
+		for(int i=0; i<this.plateau.size(); i++){
+			this.plateau.get(i).addPiece(tabPiecesColor.get(i));
 		}
 	}
 	

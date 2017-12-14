@@ -33,7 +33,7 @@ public class PlayerTest {
 		assertTrue(p.getPieces().size() == 0);
 		Piece piece = new Piece();
 		p.addPieces(piece);
-		System.out.println(p.getPieces().size());
+		// System.out.println(p.getPieces().size());
 		assertTrue(p.getPieces().size() == 1);
 		
 		Player q = new Player("Michou");

@@ -9,7 +9,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import core.*;
-
 import utility.*;
 
 public class EngineTest {
@@ -69,21 +68,21 @@ public class EngineTest {
 		int nbPurple = 0;
 		int nbGreen = 0;
 		int nbRed = 0;
-		for(int i=0; i<e.getPlateau().length; i++) {
+		for(int i=0; i<e.getPlateau().size(); i++) {
 			switch(e.getPlateau().get(i).getPiece().getColor()){
-			case Color.WHITE.getColor():
+			case 1:
 				nbWhite++; break;
-			case Color.BLUE.getColor():
+			case 2:
 				nbBlue++; break;
-			case Color.YELLOW.getColor():
+			case 3:
 				nbYellow++; break;
-			case Color.ORANGE.getColor():
+			case 4:
 				nbOrange++; break;
-			case Color.PURPLE.getColor():
+			case 5:
 				nbPurple++; break;
-			case Color.GREEN.getColor():
+			case 6:
 				nbGreen++; break;
-			case Color.RED.getColor():
+			case 7:
 				nbRed++; break;
 			}
 		}
