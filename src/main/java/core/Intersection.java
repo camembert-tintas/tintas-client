@@ -41,4 +41,10 @@ public class Intersection {
 		this.piece = new Piece(p);
 		this.state = State.PIECE.getState();
 	}
+	
+	public void removePiece() {
+		if (this.state == State.PIECE.getState()) {
+			this.piece = null;
+		}
+	}
 }
