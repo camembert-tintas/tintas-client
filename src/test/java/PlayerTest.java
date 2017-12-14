@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utility.Color;
 import core.*;
 
 public class PlayerTest {
@@ -39,6 +40,21 @@ public class PlayerTest {
 		Player q = new Player("Michou");
 		assertTrue(q.getName().equals("Michou"));
 		assertTrue(q.getPieces().size() == 0);
+	}
+	
+	@Test
+	public void testVictoire() {
+		Player p = new Player("Marcus");
+		Piece piece = new Piece(Color.BLUE.getColor());
+		for (int i=0; i<7; i++){
+			p.addPieces(piece);
+		}
+		assertTrue(p.Check7PiecesSameColor() == true);
+		
+		p.getPieces().clear();
+		for (int i=0; i<7; i++){
+			p.addPieces(piece);
+		}
 	}
 
 }
