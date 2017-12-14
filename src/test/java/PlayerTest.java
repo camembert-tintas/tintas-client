@@ -32,7 +32,7 @@ public class PlayerTest {
 		assertTrue(p.getName().equals("Marcus"));
 		assertTrue(p.getPieces().size() == 0);
 		Piece piece = new Piece();
-		p.addPieces(piece);
+		p.addPiece(piece);
 		System.out.println(p.getPieces().size());
 		assertTrue(p.getPieces().size() == 1);
 		
