@@ -94,5 +94,12 @@ public class EngineTest {
 		assertTrue(nbGreen == 7);
 		assertTrue(nbRed == 7);
 	}
+	
+	@Test
+	public void testPawn() {
+		Engine e = new Engine();
+		e.setPawn(new Coordinate('A',1));
+		assertTrue(e.getPawn().getCoordinate().toString().equals("A1"));
+	}
 
 }

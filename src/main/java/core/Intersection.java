@@ -24,7 +24,7 @@ public class Intersection {
 	}
 
 	public void setCoord(Coordinate coord) {
-		this.coord = coord;
+		this.coord = new Coordinate(coord);
 	}
 
 	public Intersection(Coordinate c) {

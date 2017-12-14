@@ -14,17 +14,19 @@ public class Player {
 		pieces = new ArrayList<Piece>(); 
 		num++;
 	}
+	
+	public Player(Player player){
+		this.num = player.getNum();
+		this.name = player.getName();
+		this.pieces = player.getPieces();
+	}
 
 	public ArrayList<Piece> getPieces() {
 		return pieces;
 	}
-
-	public void setPieces(ArrayList<Piece> pieces) {
-		this.pieces = pieces;
-	}
 	
-	public void addPieces(Piece piece){
-		pieces.add(piece);
+	public void addPiece(Piece piece){
+		pieces.add(new Piece(piece));
 	}
 
 	public int getNum() {

@@ -5,7 +5,7 @@ public class Pawn {
 	private Coordinate coordinate;
 	
 	public Pawn(Coordinate coordinate){
-		this.coordinate = coordinate;
+		this.coordinate = new Coordinate(coordinate);
 	}
 
 	public Coordinate getCoordinate() {
@@ -13,9 +13,9 @@ public class Pawn {
 	}
 
 	public void setCoordinate(Coordinate coordinate) {
-		this.coordinate = coordinate;
+		this.coordinate = new Coordinate(coordinate);
 	}
-
+	
 	@Override
 	public String toString() {
 		return this.coordinate.toString();
