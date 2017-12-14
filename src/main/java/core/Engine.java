@@ -30,6 +30,7 @@ public class Engine {
 	        }
 	    }
 	    id++;
+	    fillEngine();
 	}
 	
 	public void fillEngine(){
@@ -241,13 +242,17 @@ public class Engine {
 
 	public void printTableau(){
 		String letter = "ABCDEFGHI";
-	    for (int i = 0; i < letter.length(); i++) {
-	        for (int j = 1; j <= 9; j++) {
+		for (int j = 1; j <= 9; j++) {
+			for (int i = 0; i < letter.length(); i++) {
 	            Coordinate coordinates = new Coordinate(letter.charAt(i), j);
-	            if (coordinates.isValid()) {
-	                getIntersection(coordinates.toString()).printIntersect();
+	            if(this.pawn!=null && this.pawn.getCoordinate().toString().equals(coordinates.toString())){
+	            	System.out.print(" X ");
 	            }else{
-	            	System.out.print(" ");
+	            	if (coordinates.isValid()) {
+	            		System.out.print(" "+getIntersection(coordinates.toString()).printIntersect()+" ");
+	            	}else{
+	            		System.out.print("   ");
+	            	}
 	            }
 	        }
 	        System.out.print("\n");

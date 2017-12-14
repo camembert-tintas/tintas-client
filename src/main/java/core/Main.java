@@ -6,7 +6,9 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("hello world");
+		Engine e = new Engine();
+		e.setPawn(new Coordinate('A',7));
+		e.printTableau();
 	}
 
 }
