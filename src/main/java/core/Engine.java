@@ -42,7 +42,7 @@ public class Engine {
 		Piece pPurple = new Piece(Color.PURPLE.getColor());
 		Piece pGreen = new Piece(Color.GREEN.getColor());
 		Piece pRed = new Piece(Color.RED.getColor());
-		for (int a=0; a<7; a++){
+		for (int a=0; a<7; a++) {
 			tabPiecesColor.add(pWhite);
 			tabPiecesColor.add(pBlue);
 			tabPiecesColor.add(pYellow);
@@ -72,7 +72,7 @@ public class Engine {
 	}
 	
 	public void changePlayer(){
-		actualPlayer = actualPlayer==1?2:1;
+		actualPlayer = actualPlayer==0?1:0;
 	}
 	
 	public void setPawn(Coordinate c){
@@ -133,7 +133,9 @@ public class Engine {
 		Intersection intersect = getIntersection(coord.toString());
 		Piece piece = new Piece(intersect.getPiece());
 		intersect.removePiece();
-		players.get(actualPlayer).addPiece(piece);		
+		players.get(actualPlayer).addPiece(piece);	
+		System.out.println("Je deplace le pion");
+		setPawn(coord);
 	}
 	
 	public boolean possibleMove(Coordinate coordinate){
