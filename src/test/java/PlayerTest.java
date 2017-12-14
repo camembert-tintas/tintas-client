@@ -33,8 +33,7 @@ public class PlayerTest {
 		assertTrue(p.getName().equals("Marcus"));
 		assertTrue(p.getPieces().size() == 0);
 		Piece piece = new Piece();
-		p.addPieces(piece);
-		// System.out.println(p.getPieces().size());
+		p.addPiece(piece);
 		assertTrue(p.getPieces().size() == 1);
 		
 		Player q = new Player("Michou");
@@ -47,7 +46,7 @@ public class PlayerTest {
 		Player p = new Player("Marcus");
 		Piece piece = new Piece(Color.BLUE.getColor());
 		for (int i=0; i<7; i++){
-			p.addPieces(piece);
+			p.addPiece(piece);
 		}
 		assertTrue(p.check7PiecesSameColor() == true);
 		
@@ -57,10 +56,10 @@ public class PlayerTest {
 		p.getPieces().clear();
 		
 		for (int i=0; i<4; i++){
-			p.addPieces(piece);
-			p.addPieces(piece2);
-			p.addPieces(piece3);
-			p.addPieces(piece4);
+			p.addPiece(piece);
+			p.addPiece(piece2);
+			p.addPiece(piece3);
+			p.addPiece(piece4);
 		}
 		
 		assertTrue(p.check4PiecesFor4DifferentColor() == true);
