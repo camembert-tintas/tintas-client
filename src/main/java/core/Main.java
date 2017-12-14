@@ -8,6 +8,8 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		//e.setPawn(new Coordinate('A',7));
+		//e.printTableau();
 		Scanner sc = new Scanner(System.in);
 		Engine jeu = new Engine();
 		jeu.addPlayer(new Player("Player 1"));
