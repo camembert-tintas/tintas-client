@@ -70,7 +70,7 @@ public class Engine {
 	}
 	
 	public void changePlayer(){
-		actualPlayer = actualPlayer==1?2:1;
+		actualPlayer = actualPlayer==0?1:0;
 	}
 	
 	public void setPawn(Coordinate c){
@@ -92,6 +92,17 @@ public class Engine {
 			}
 		}
 		return null;
+	}
+	
+	public void randomMove(){
+		ArrayList<Coordinate> valCoord = possibleMovePawn();
+		
+		for(int i=0; i<valCoord.size(); i++){
+			if(possibleMove(valCoord.get(i))){
+				doMove(valCoord.get(i));
+			}
+		}
+		changePlayer();
 	}
 	
 	public void move(Coordinate coordTo){
@@ -131,7 +142,8 @@ public class Engine {
 		Intersection intersect = getIntersection(coord.toString());
 		Piece piece = intersect.getPiece();
 		intersect.removePiece();
-		players.get(actualPlayer).addPiece(piece);		
+		players.get(actualPlayer).addPiece(piece);
+		setPawn(coord);
 	}
 	
 	public boolean possibleMove(Coordinate coordinate){
@@ -232,7 +244,7 @@ public class Engine {
 			int newLine = Character.valueOf(coordFrom.charAt(1));
 			newLine+=diff;
 			coordFrom = newCol + "" + newLine;
-			if(coordFrom != coordTo && getIntersection(coordFrom).getState() != State.LIBRE.getState()){
+			if(!(coordFrom.equals(coordTo)) && getIntersection(coordFrom).getState() != State.LIBRE.getState()){
 				return false;
 			}
 		}
@@ -257,5 +269,14 @@ public class Engine {
 	        }
 	        System.out.print("\n");
 	    }
+	}
+
+	public boolean hasWinner(){
+		for(int i = 0; i<players.size(); i++){
+			if(players.get(i).hasWin()){
+				return true;
+			}
+		}
+		return false;
 	}
 }
