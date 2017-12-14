@@ -1,6 +1,7 @@
 package core;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class Engine {
 
@@ -22,6 +23,13 @@ public class Engine {
 	        }
 	    }
 	    id++;
+	}
+	
+	public void fillEngine(){
+		Vector<Integer> tabPiecesColor = new Vector<Integer>();
+		for (int a=0; a<7; a++){
+			
+		}
 	}
 	
 	public void addPlayer(Player player){

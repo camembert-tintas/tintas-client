@@ -10,6 +10,8 @@ import org.junit.Test;
 
 import core.*;
 
+import utility.*;
+
 public class EngineTest {
 
 	@BeforeClass
@@ -54,6 +56,44 @@ public class EngineTest {
 		assertTrue(e.actualPlayer() == 1);
 		e.changePlayer();
 		assertTrue(e.actualPlayer() == 2);
+	}
+	
+	@Test
+	public void testColors() {
+		Engine e = new Engine();
+		e.fillEngine();
+		int nbWhite = 0;
+		int nbBlue = 0;
+		int nbYellow = 0;
+		int nbOrange = 0;
+		int nbPurple = 0;
+		int nbGreen = 0;
+		int nbRed = 0;
+		for(int i=0; i<e.getPlateau().length; i++) {
+			switch(e.getPlateau().get(i).getPiece().getColor()){
+			case Color.WHITE.getColor():
+				nbWhite++; break;
+			case Color.BLUE.getColor():
+				nbBlue++; break;
+			case Color.YELLOW.getColor():
+				nbYellow++; break;
+			case Color.ORANGE.getColor():
+				nbOrange++; break;
+			case Color.PURPLE.getColor():
+				nbPurple++; break;
+			case Color.GREEN.getColor():
+				nbGreen++; break;
+			case Color.RED.getColor():
+				nbRed++; break;
+			}
+		}
+		assertTrue(nbWhite == 7);
+		assertTrue(nbBlue == 7);
+		assertTrue(nbYellow == 7);
+		assertTrue(nbOrange == 7);
+		assertTrue(nbPurple == 7);
+		assertTrue(nbGreen == 7);
+		assertTrue(nbRed == 7);
 	}
 
 }
