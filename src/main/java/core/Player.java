@@ -29,6 +29,12 @@ public class Player {
 	public void addPiece(Piece piece){
 		pieces.add(new Piece(piece));
 		check7PiecesSameColor();
+		check4PiecesFor4DifferentColor();
+		System.out.print(getName()+": ");
+		for(int i = 0; i < pieces.size(); i++){
+			System.out.print(pieces.get(i).getColor()+"+");
+		}
+		System.out.println();
 	}
 
 	public int getNum() {
@@ -67,12 +73,13 @@ public class Player {
 			if (nbWhite == 7 || nbBlue == 7 || nbYellow == 7 || nbOrange == 7 || nbPurple == 7 
 					|| nbGreen == 7 || nbRed == 7) {
 				win = true;
+				return;
 			}
 		}
 		win = false;
 	}
 	
-	public boolean check4PiecesFor4DifferentColor(){
+	public void check4PiecesFor4DifferentColor(){
 		int nbWhite = 0;
 		int nbBlue = 0;
 		int nbYellow = 0;
@@ -123,9 +130,10 @@ public class Player {
 		}
 		
 		if (count >= 4) {
-			return true;
+			win = true;
+			return;
 		}
-		return false;
+		win = false;
 	}
 
 	public boolean hasWin(){

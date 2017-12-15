@@ -22,5 +22,6 @@ public class Main {
 			e.randomMove();
 			e.printTableau();
 		}while(!e.hasWinner());
+		System.out.println("FIN!");
 	}
 }
