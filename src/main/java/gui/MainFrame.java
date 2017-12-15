@@ -17,8 +17,10 @@ public class MainFrame extends JFrame {
 
     /** The main panel. */
 
-    private ConnexionPanel connexionPanel;
-    private GamePanel gamePanel;
+    private static ConnexionPanel connexionPanel;
+    
+    private static GamePanel gamePanel;
+    
     
     private static JPanel cardLayoutPanel;
     
@@ -50,6 +52,10 @@ public class MainFrame extends JFrame {
         
         pack();
         setVisible(true);
+    }
+    
+    public static final void startGame() {
+    	gamePanel.initGamePanel();
     }
     
     

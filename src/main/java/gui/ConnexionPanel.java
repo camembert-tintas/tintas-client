@@ -7,12 +7,21 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import javax.imageio.ImageIO;
+import javax.naming.CommunicationException;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+
+import utility.DataBaseConnection;
 
 
 /**
@@ -37,7 +46,29 @@ public class ConnexionPanel extends JPanel {
         }
         
         private void connect() {
-        	MainFrame.getCl().next(MainFrame.getCardLayoutPanel());
+        	try(Connection con = DataBaseConnection.connect();
+        			PreparedStatement preparedStatement = con.prepareStatement(
+        					"SELECT COUNT(*) FROM player WHERE login = ? AND password = ?")) {
+        		preparedStatement.setString(1, loginTextField.getText().trim());
+        		preparedStatement.setString(2, passwordTextField.getText().trim());
+        		
+        		try(ResultSet resultSet = preparedStatement.executeQuery()) {
+            		while (resultSet.next()) {
+            			if (resultSet.getInt(1) == 1) {
+            				MainFrame.startGame();
+            	        	MainFrame.getCl().next(MainFrame.getCardLayoutPanel());
+            			}
+            			else {
+            				errorArea.setText("INFO: Erreur d'identifiants !");
+            			}
+            		}       			
+        		}
+        		
+        	} catch (Exception e) {
+				e.printStackTrace();
+				errorArea.setText("INFO: Erreur de connexion !");
+			}
+        	
         }
 
     }
@@ -54,7 +85,9 @@ public class ConnexionPanel extends JPanel {
     
     private JTextField loginTextField;
 
-    private JTextField passwordTextField;   
+    private JTextField passwordTextField;
+    
+    private JLabel errorArea;
 
 
     /**
@@ -88,7 +121,7 @@ public class ConnexionPanel extends JPanel {
     private final void initFormPane() {
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new FlowLayout());
-        formPanel.setPreferredSize(new Dimension(WIDTH_PANEL, 665));
+        formPanel.setPreferredSize(new Dimension(WIDTH_PANEL, 500));
         formPanel.setBackground(new Color(51, 122, 183));
 
         JLabel loginLabel = new JLabel("LOGIN");
@@ -106,14 +139,32 @@ public class ConnexionPanel extends JPanel {
         passwordTextField.setBorder(new LineBorder(Color.black, 3));
 
 
+        ImageIcon imageIcon = new ImageIcon(this.getClass().getResource("/img/tintas.jpg"));
         
-        formPanel.add(loginLabel);
-        formPanel.add(loginTextField);
+        JLabel label = new JLabel(imageIcon);
         
-        formPanel.add(passwordLabel);
-        formPanel.add(passwordTextField);
+        formPanel.add(label);
+        
+        JPanel loginPanel = new JPanel();
+        loginPanel.add(loginLabel);
+        loginPanel.add(loginTextField);
+        
+        JPanel passwordPanel = new JPanel();
+        passwordPanel.add(passwordLabel);
+        passwordPanel.add(passwordTextField);
+        
+        formPanel.add(loginPanel);
+        formPanel.add(passwordPanel);
+        
+        errorArea = new JLabel("INFO: ");
+        errorArea.setPreferredSize(new Dimension(400, 20));
+        errorArea.setFont(new Font("Monospaced", Font.BOLD, 14));
+        errorArea.setForeground(Color.RED);
+        
+        formPanel.add(errorArea);
         
         add(formPanel, BorderLayout.NORTH);
+        
     }
 
     /**
