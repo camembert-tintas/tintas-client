@@ -42,7 +42,7 @@ public class Engine {
 		Piece pPurple = new Piece(Color.PURPLE.getColor());
 		Piece pGreen = new Piece(Color.GREEN.getColor());
 		Piece pRed = new Piece(Color.RED.getColor());
-		for (int a=0; a<7; a++){
+		for (int a=0; a<7; a++) {
 			tabPiecesColor.add(pWhite);
 			tabPiecesColor.add(pBlue);
 			tabPiecesColor.add(pYellow);
@@ -50,8 +50,10 @@ public class Engine {
 			tabPiecesColor.add(pPurple);
 			tabPiecesColor.add(pGreen);
 			tabPiecesColor.add(pRed);
-		}		
+		}
+		
 		Collections.shuffle(tabPiecesColor);
+
 		for(int i=0; i<this.plateau.size(); i++){
 			this.plateau.get(i).addPiece(tabPiecesColor.get(i));
 		}
@@ -70,12 +72,15 @@ public class Engine {
 	}
 	
 	public void changePlayer(){
-		actualPlayer = actualPlayer==1?2:1;
+		actualPlayer = actualPlayer==0?1:0;
 	}
 	
 	public void setPawn(Coordinate c){
 		if(pawn==null){
 			pawn = new Pawn(c);
+			Intersection intersect = getIntersection(c.toString());
+			players.get(actualPlayer).addPiece(new Piece(intersect.getPiece()));
+			intersect.removePiece();
 		}else{
 			pawn.setCoordinate(c);
 		}
@@ -94,6 +99,19 @@ public class Engine {
 		return null;
 	}
 	
+	public void randomMove(){
+		ArrayList<Coordinate> valCoord = possibleMovePawn();
+		
+		int randInd, count=0;
+		do{
+			randInd = (int) (Math.random()*valCoord.size());
+			System.out.print("rand : " + randInd + "\n");
+			count++;
+		}while(possibleMove(valCoord.get(randInd)));		
+		
+		doMove(valCoord.get(randInd));
+	}
+	
 	public void move(Coordinate coordTo){
 		if((!coordTo.isValid()) ||
 				(getIntersection(coordTo.toString()).getState() !=
@@ -110,7 +128,7 @@ public class Engine {
 				countEmpty++;
 			}
 			
-			if(valCoord.get(i).toString() == coordTo.toString()){
+			if(valCoord.get(i).toString().equals(coordTo.toString())){
 				if(possibleMove(coordTo)){
 					doMove(coordTo);
 					return;
@@ -124,21 +142,23 @@ public class Engine {
 		if(countEmpty == valCoord.size()){
 			doMove(coordTo);
 		}
-		changePlayer();
 	}
 	
 	public void doMove(Coordinate coord){
 		Intersection intersect = getIntersection(coord.toString());
-		Piece piece = intersect.getPiece();
+		intersect.setState(utility.State.LIBRE.getState());
+		Piece piece = new Piece(intersect.getPiece());
 		intersect.removePiece();
-		players.get(actualPlayer).addPiece(piece);		
+		players.get(actualPlayer).addPiece(piece);
+		setPawn(coord);
+		changePlayer();
 	}
 	
 	public boolean possibleMove(Coordinate coordinate){
 		String coordFrom = pawn.getCoordinate().toString();
 		String coordTo = coordinate.toString();
 		
-		if(coordFrom == coordTo){
+		if(coordFrom.equals(coordTo) || getIntersection(coordTo).getState() == utility.State.LIBRE.getState()){
 			return false;
 		}
 		
@@ -152,8 +172,9 @@ public class Engine {
 	}
 	
 	public ArrayList<Coordinate> possibleMovePawn(){
-		ArrayList<Coordinate> possible = new ArrayList<Coordinate>();		
-		Coordinate coordPawn = pawn.getCoordinate();
+		ArrayList<Coordinate> possible = new ArrayList<Coordinate>();	
+		System.out.println(pawn.getCoordinate().toString());
+		Coordinate coordPawn = new Coordinate(pawn.getCoordinate());
 		
 		for(int i = 0; i < plateau.size(); i++){
 			Coordinate actualCoord = plateau.get(i).getCoord();
@@ -201,11 +222,11 @@ public class Engine {
 		
         if(Character.getNumericValue(coordFrom.charAt(1)) >
         Character.getNumericValue(coordTo.charAt(1))){
-        	lineMin = coordTo.charAt(0);
-        	lineMax = coordFrom.charAt(0);
+        	lineMin = Character.getNumericValue(coordTo.charAt(1));
+        	lineMax = Character.getNumericValue(coordFrom.charAt(1));
         }else{
-        	lineMax = coordTo.charAt(0);
-        	lineMin = coordFrom.charAt(0);
+        	lineMax = Character.getNumericValue(coordTo.charAt(1));
+        	lineMin = Character.getNumericValue(coordFrom.charAt(1));
         }
         lineMin++;
         if(lineMin == lineMax){
@@ -226,13 +247,13 @@ public class Engine {
 	public boolean isDiagonalEmpty(String coordFrom, String coordTo){
 		int diff = coordFrom.charAt(0)>coordTo.charAt(0)?-1:+1;
 		
-		while(coordFrom != coordTo){
+		while(!coordFrom.equals(coordTo)){
 			char newCol = coordFrom.charAt(0);
 			newCol+=diff;
-			int newLine = Character.valueOf(coordFrom.charAt(1));
+			int newLine = Character.getNumericValue(coordFrom.charAt(1));
 			newLine+=diff;
 			coordFrom = newCol + "" + newLine;
-			if(coordFrom != coordTo && getIntersection(coordFrom).getState() != State.LIBRE.getState()){
+			if(!(coordFrom.equals(coordTo)) && getIntersection(coordFrom).getState() != State.LIBRE.getState()){
 				return false;
 			}
 		}
@@ -257,5 +278,14 @@ public class Engine {
 	        }
 	        System.out.print("\n");
 	    }
+	}
+
+	public boolean hasWinner(){
+		for(int i = 0; i<players.size(); i++){
+			if(players.get(i).hasWin()){
+				return true;
+			}
+		}
+		return false;
 	}
 }
