@@ -40,29 +40,5 @@ public class PlayerTest {
 		assertTrue(q.getName().equals("Michou"));
 		assertTrue(q.getPieces().size() == 0);
 	}
-	
-	@Test
-	public void testVictoire() {
-		Player p = new Player("Marcus");
-		Piece piece = new Piece(Color.BLUE.getColor());
-		for (int i=0; i<7; i++){
-			p.addPiece(piece);
-		}
-		assertTrue(p.check7PiecesSameColor() == true);
-		
-		Piece piece2 = new Piece(Color.WHITE.getColor());
-		Piece piece3 = new Piece(Color.RED.getColor());
-		Piece piece4 = new Piece(Color.GREEN.getColor());
-		p.getPieces().clear();
-		
-		for (int i=0; i<4; i++){
-			p.addPiece(piece);
-			p.addPiece(piece2);
-			p.addPiece(piece3);
-			p.addPiece(piece4);
-		}
-		
-		assertTrue(p.check4PiecesFor4DifferentColor() == true);
-	}
 
 }

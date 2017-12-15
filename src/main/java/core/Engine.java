@@ -13,6 +13,25 @@ public class Engine {
 	private int actualPlayer = (int) (Math.random()*1);
 	private Pawn pawn;
 	
+	public int getId(){
+		return this.id;
+	}
+	
+	public int getScore(String name){
+		int result = 0;
+		for(int i = 0; i<players.size(); i++){
+			if(players.get(i).getName().equals(name)){
+				result = 49 - players.get(i).getPieces().size();
+			}
+		}
+		return result;
+	}
+	
+	public String getWinner(){
+		changePlayer();
+		return players.get(actualPlayer).getName();
+	}
+	
 	public ArrayList<Intersection> getPlateau() {
 		return this.plateau;
 	}
