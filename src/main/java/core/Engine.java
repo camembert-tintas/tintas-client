@@ -81,6 +81,7 @@ public class Engine {
 			Intersection intersect = getIntersection(c.toString());
 			players.get(actualPlayer).addPiece(new Piece(intersect.getPiece()));
 			intersect.removePiece();
+			changePlayer();
 		}else{
 			pawn.setCoordinate(c);
 		}
@@ -180,14 +181,15 @@ public class Engine {
 			Coordinate actualCoord = plateau.get(i).getCoord();
 			if(!actualCoord.toString().equals(coordPawn.toString())){
 				if(actualCoord.toString().charAt(0) == coordPawn.toString().charAt(0) ||
-						actualCoord.toString().charAt(1) == coordPawn.toString().charAt(1) ||
-						(coordPawn.toString().charAt(0) - actualCoord.toString().charAt(0) ==
-						coordPawn.toString().charAt(1) - actualCoord.toString().charAt(1))){
+						actualCoord.toString().charAt(1) == coordPawn.toString().charAt(1)){
+					possible.add(actualCoord);
+				}
+				if(Math.abs(coordPawn.toString().charAt(0) - actualCoord.toString().charAt(0)) ==
+						Math.abs(coordPawn.toString().charAt(1) - actualCoord.toString().charAt(1))){
 					possible.add(actualCoord);
 				}
 			}
 		}
-		
 		return possible;
 	}
 	
@@ -245,13 +247,14 @@ public class Engine {
     }
 	
 	public boolean isDiagonalEmpty(String coordFrom, String coordTo){
-		int diff = coordFrom.charAt(0)>coordTo.charAt(0)?-1:+1;
+		int diffCol = coordFrom.charAt(0)>coordTo.charAt(0)?-1:+1;
+		int diffLine = coordFrom.charAt(1)>coordTo.charAt(1)?-1:+1;
 		
 		while(!coordFrom.equals(coordTo)){
 			char newCol = coordFrom.charAt(0);
-			newCol+=diff;
+			newCol+=diffCol;
 			int newLine = Character.getNumericValue(coordFrom.charAt(1));
-			newLine+=diff;
+			newLine+=diffLine;
 			coordFrom = newCol + "" + newLine;
 			if(!(coordFrom.equals(coordTo)) && getIntersection(coordFrom).getState() != State.LIBRE.getState()){
 				return false;
