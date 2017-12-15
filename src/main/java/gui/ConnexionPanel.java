@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 import utility.DataBaseConnection;
+import utility.RandomGenerator;
 
 
 /**
@@ -122,7 +123,9 @@ public class ConnexionPanel extends JPanel {
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new FlowLayout());
         formPanel.setPreferredSize(new Dimension(WIDTH_PANEL, 500));
-        formPanel.setBackground(new Color(51, 122, 183));
+//        formPanel.setBackground(new Color(51, 122, 183));
+        formPanel.setBackground(new Color(RandomGenerator.generate(), RandomGenerator.generate(), 
+        		RandomGenerator.generate()));
 
         JLabel loginLabel = new JLabel("LOGIN");
         loginLabel.setFont(LABEL_POLICE);
@@ -148,10 +151,14 @@ public class ConnexionPanel extends JPanel {
         JPanel loginPanel = new JPanel();
         loginPanel.add(loginLabel);
         loginPanel.add(loginTextField);
+        loginPanel.setBackground(new Color(RandomGenerator.generate(), RandomGenerator.generate(), 
+        		RandomGenerator.generate()));
         
         JPanel passwordPanel = new JPanel();
         passwordPanel.add(passwordLabel);
         passwordPanel.add(passwordTextField);
+        passwordPanel.setBackground(new Color(RandomGenerator.generate(), RandomGenerator.generate(), 
+        		RandomGenerator.generate()));
         
         formPanel.add(loginPanel);
         formPanel.add(passwordPanel);
@@ -159,7 +166,9 @@ public class ConnexionPanel extends JPanel {
         errorArea = new JLabel("INFO: ");
         errorArea.setPreferredSize(new Dimension(400, 20));
         errorArea.setFont(new Font("Monospaced", Font.BOLD, 14));
-        errorArea.setForeground(Color.RED);
+//        errorArea.setForeground(Color.RED);
+        errorArea.setForeground(new Color(RandomGenerator.generate(), RandomGenerator.generate(), 
+        		RandomGenerator.generate()));
         
         formPanel.add(errorArea);
         
