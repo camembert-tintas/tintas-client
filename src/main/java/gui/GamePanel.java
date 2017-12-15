@@ -21,14 +21,14 @@ public class GamePanel extends JPanel {
     private static final long serialVersionUID = 1334162767247634819L;
 
     /** The Constant WIDTH_PANEL. */
-    private static final int WIDTH_PANEL = 800;
+    private static final int WIDTH_PANEL = 820;
 
 
     
     private JPanel firstPlayerPane;
     private JPanel secondPlayerPane;
     private JPanel gamePane;
-    
+
     
 
     public GamePanel() {
@@ -40,14 +40,14 @@ public class GamePanel extends JPanel {
     private final void initGamePane() {
     	gamePane = new JPanel();
     	gamePane.setBackground(new Color(255, 0, 0));
-    	gamePane.setPreferredSize(new Dimension(800, 400));
+    	gamePane.setPreferredSize(new Dimension(600, 400));
     	add(gamePane, BorderLayout.CENTER);
     }
     
     private final void initFirstPlayerPane() {
     	firstPlayerPane = new JPanel();
     	firstPlayerPane.setBackground(new Color(0, 255, 0));
-    	firstPlayerPane.setPreferredSize(new Dimension(120, 400));
+    	firstPlayerPane.setPreferredSize(new Dimension(150, 400));
     	add(firstPlayerPane, BorderLayout.WEST);
         
     }
@@ -55,7 +55,7 @@ public class GamePanel extends JPanel {
     private final void initSecondPlayerPane() {
     	secondPlayerPane = new JPanel();
     	secondPlayerPane.setBackground(new Color(0, 0, 255));
-    	secondPlayerPane.setPreferredSize(new Dimension(120, 400));
+    	secondPlayerPane.setPreferredSize(new Dimension(150, 400));
     	add(secondPlayerPane, BorderLayout.EAST);
         
     }
@@ -67,7 +67,14 @@ public class GamePanel extends JPanel {
     }
 
 
-    private final void initPanelOptions() {
+    public final void initGamePanel() {
+    	gamePane.setVisible(false);
+    	Hexgame hex = new Hexgame();
+		add(hex.getDrawingPanel(), BorderLayout.CENTER);		
+	}
+
+
+	private final void initPanelOptions() {
         setLayout(new BorderLayout());
     }
 }
