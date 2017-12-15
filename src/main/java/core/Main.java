@@ -9,7 +9,7 @@ public class Main {
 		Engine e = new Engine();
 		e.addPlayer(new Player("Marcus"));
 		e.addPlayer(new Player("Romulus"));
-		e.setPawn(new Coordinate('D',5));
+		e.setPawn(new Coordinate('A',6));
 		e.printTableau();
 		do{
 			e.randomMove();

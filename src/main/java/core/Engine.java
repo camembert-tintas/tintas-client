@@ -100,6 +100,7 @@ public class Engine {
 		for(int i=0; i<valCoord.size(); i++){
 			if(possibleMove(valCoord.get(i))){
 				doMove(valCoord.get(i));
+				break;
 			}
 		}
 		changePlayer();
@@ -121,7 +122,7 @@ public class Engine {
 				countEmpty++;
 			}
 			
-			if(valCoord.get(i).toString() == coordTo.toString()){
+			if(valCoord.get(i).toString().equals(coordTo.toString())){
 				if(possibleMove(coordTo)){
 					doMove(coordTo);
 					return;
@@ -213,11 +214,11 @@ public class Engine {
 		
         if(Character.getNumericValue(coordFrom.charAt(1)) >
         Character.getNumericValue(coordTo.charAt(1))){
-        	lineMin = coordTo.charAt(0);
-        	lineMax = coordFrom.charAt(0);
+        	lineMin = Character.getNumericValue(coordTo.charAt(1));
+        	lineMax = Character.getNumericValue(coordFrom.charAt(1));
         }else{
-        	lineMax = coordTo.charAt(0);
-        	lineMin = coordFrom.charAt(0);
+        	lineMax = Character.getNumericValue(coordTo.charAt(1));
+        	lineMin = Character.getNumericValue(coordFrom.charAt(1));
         }
         lineMin++;
         if(lineMin == lineMax){
