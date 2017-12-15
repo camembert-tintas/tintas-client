@@ -48,7 +48,8 @@ public class Main {
 			String request = "INSERT INTO games(games_id,player_id,player_score,player_win) VALUES("+
 					gameId + "," + playerId + "," + score + "," + isWinner +")";
 			
-			preparedStatement = connexion.prepareStatement(request);
+			PreparedStatement preparedStatementSec = connexion.prepareStatement(request);
+			preparedStatementSec.executeUpdate();
 			
 			preparedStatement.close();
 			connexion.close();
