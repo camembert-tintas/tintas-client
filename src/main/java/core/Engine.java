@@ -96,6 +96,18 @@ public class Engine {
 		return null;
 	}
 	
+	public void randomMove(){
+		ArrayList<Coordinate> valCoord = possibleMovePawn();
+		
+		for(int i=0; i<valCoord.size(); i++){
+			if(possibleMove(valCoord.get(i))){
+				doMove(valCoord.get(i));
+				break;
+			}
+		}
+		changePlayer();
+	}
+	
 	public void move(Coordinate coordTo){
 		if((!coordTo.isValid()) ||
 				(getIntersection(coordTo.toString()).getState() !=
@@ -112,7 +124,7 @@ public class Engine {
 				countEmpty++;
 			}
 			
-			if(valCoord.get(i).toString() == coordTo.toString()){
+			if(valCoord.get(i).toString().equals(coordTo.toString())){
 				if(possibleMove(coordTo)){
 					doMove(coordTo);
 					return;
@@ -133,8 +145,7 @@ public class Engine {
 		Intersection intersect = getIntersection(coord.toString());
 		Piece piece = new Piece(intersect.getPiece());
 		intersect.removePiece();
-		players.get(actualPlayer).addPiece(piece);	
-		System.out.println("Je deplace le pion");
+		players.get(actualPlayer).addPiece(piece);
 		setPawn(coord);
 	}
 	
@@ -206,11 +217,11 @@ public class Engine {
 		
         if(Character.getNumericValue(coordFrom.charAt(1)) >
         Character.getNumericValue(coordTo.charAt(1))){
-        	lineMin = coordTo.charAt(0);
-        	lineMax = coordFrom.charAt(0);
+        	lineMin = Character.getNumericValue(coordTo.charAt(1));
+        	lineMax = Character.getNumericValue(coordFrom.charAt(1));
         }else{
-        	lineMax = coordTo.charAt(0);
-        	lineMin = coordFrom.charAt(0);
+        	lineMax = Character.getNumericValue(coordTo.charAt(1));
+        	lineMin = Character.getNumericValue(coordFrom.charAt(1));
         }
         lineMin++;
         if(lineMin == lineMax){
@@ -237,7 +248,7 @@ public class Engine {
 			int newLine = Character.valueOf(coordFrom.charAt(1));
 			newLine+=diff;
 			coordFrom = newCol + "" + newLine;
-			if(coordFrom != coordTo && getIntersection(coordFrom).getState() != State.LIBRE.getState()){
+			if(!(coordFrom.equals(coordTo)) && getIntersection(coordFrom).getState() != State.LIBRE.getState()){
 				return false;
 			}
 		}
@@ -262,5 +273,14 @@ public class Engine {
 	        }
 	        System.out.print("\n");
 	    }
+	}
+
+	public boolean hasWinner(){
+		for(int i = 0; i<players.size(); i++){
+			if(players.get(i).hasWin()){
+				return true;
+			}
+		}
+		return false;
 	}
 }

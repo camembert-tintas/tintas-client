@@ -8,6 +8,7 @@ public class Player {
 	private static int num = 0;
 	private String name;
 	private ArrayList<Piece> pieces;
+	private boolean win = false;
 	
 	public Player(String name){
 		this.name = name;
@@ -27,6 +28,7 @@ public class Player {
 	
 	public void addPiece(Piece piece){
 		pieces.add(new Piece(piece));
+		check7PiecesSameColor();
 	}
 
 	public int getNum() {
@@ -37,7 +39,7 @@ public class Player {
 		return name;
 	}
 
-	public boolean check7PiecesSameColor(){
+	public void check7PiecesSameColor(){
 		int nbWhite = 0;
 		int nbBlue = 0;
 		int nbYellow = 0;
@@ -64,10 +66,10 @@ public class Player {
 			}
 			if (nbWhite == 7 || nbBlue == 7 || nbYellow == 7 || nbOrange == 7 || nbPurple == 7 
 					|| nbGreen == 7 || nbRed == 7) {
-				return true;
+				win = true;
 			}
 		}
-		return false;
+		win = false;
 	}
 	
 	public boolean check4PiecesFor4DifferentColor(){
@@ -125,4 +127,9 @@ public class Player {
 		}
 		return false;
 	}
+
+	public boolean hasWin(){
+		return win;
+	}
+	
 }
