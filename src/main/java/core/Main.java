@@ -1,5 +1,7 @@
 package core;
 
+import gui.TintasUserInterface;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +15,8 @@ public class Main {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
+		TintasUserInterface gui = TintasUserInterface.start();
 		Scanner sc = new Scanner(System.in);
 		Engine e = new Engine();
 		System.out.print("Entrer le même login que celui de l'inscription: ");
